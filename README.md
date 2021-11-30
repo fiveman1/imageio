@@ -24,7 +24,9 @@ correct location. This should be as simple as getting the updated Makefile from 
 
 **Docker**
 
-If you are using docker, you will need to rebuild the image first (only once to download the files):
+Get the updated Dockerfile from the support-code here: https://github.umn.edu/umn-csci-3081-f21/shared-upstream/blob/support-code/Dockerfile
+
+You will then need to rebuild the image (only once to download the files):
 
 ```shell
 bin/rebuild-env.sh
