@@ -19,12 +19,12 @@ The ``demo`` directory has multiple files demonstrating how to use:
 
 ## How to install
 
-To use this library you will first want to link it. The library files have already been provided in the 
-correct location.
+To use this library you need to link it. The library files have already been provided in the 
+correct location. This should be as simple as getting the updated Makefile from support-code.
 
 **Docker**
 
-If you are using docker, you will need to rebuild the image first (only once to download the library file):
+If you are using docker, you will need to rebuild the image first (only once to download the files):
 
 ```shell
 bin/rebuild-env.sh
@@ -32,28 +32,21 @@ bin/rebuild-env.sh
 
 **Makefile**
 
-To link the library, if you are using the provided Makefile from the support code, you will simply need to
-add the library to the `LIBS` variable in your Makefile.
+To use the library, simply get the updated Makefile from the support-code here:
+https://github.umn.edu/umn-csci-3081-f21/shared-upstream/blob/support-code/project/Makefile.
 
-If you are using a CSE labs machine, you will need to use `-limageio-cse`.
+The only changes are:
 
-If you are using Docker, you will need to use `-limageio-docker`.
+Adding `-limageio` to `LIBS`
 
-```makefile
-LIBS = -lCppWebServer -lwebsockets -lssl -lcrypto -lz -lpthread  $(OPENCV_LIBS)
-```
+Adding `-Wl,-rpath,$(DEP_DIR)/lib` to `CXXFLAGS`
 
-becomes
-
-```makefile
-LIBS = -lCppWebServer -lwebsockets -lssl -lcrypto -lz -lpthread  $(OPENCV_LIBS) -limageio-cse
-```
+This last part must come AFTER `-include $(ROOT_DIR)/config/settings`
 
 **Includes**
 
-You can copy the contents of the `include` directory to your own `include` directory.
-
-All of the necessary header files will be in their own directory named `imageio`.
+All the necessary includes are installed for you. You can still view the provided header files
+to read the documentation.
 
 To use the library in your project, simply prefix the header you want to include with the directory:
 ```c++
@@ -62,3 +55,15 @@ To use the library in your project, simply prefix the header you want to include
 etc.
 
 This is also demonstrated in the demo files.
+
+**Namespace**
+
+This library uses the namespace `imageio`.
+
+You can use
+
+```c++
+using namespace imageio;
+```
+
+if you find that useful.
