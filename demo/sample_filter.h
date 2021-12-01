@@ -15,8 +15,8 @@ protected:
     void ApplyInternal(const vector<IImage *> &inputs, const vector<IImage *> &outputs) override {
         // Do not modify any of the inputs
         // Outputs are assumed to be empty images, resize them first
-        const IImage& input = inputs[0];
-        IImage& output = outputs[0];
+        const IImage& input = *inputs[0];
+        IImage& output = *outputs[0];
 
         // pick 1 or 2
         // 1. resize image to have same dimensions as input (does not copy pixels over)

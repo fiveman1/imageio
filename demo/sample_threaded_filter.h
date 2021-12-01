@@ -28,8 +28,8 @@ protected:
     void ApplyToRegion(int startx, int endx, int starty, int endy, const vector<IImage *> &inputs,
                        const vector<IImage *> &outputs) override {
         // Do not modify any of the inputs
-        const IImage& input = inputs[0];
-        IImage& output = outputs[0];
+        const IImage& input = *inputs[0];
+        IImage& output = *outputs[0];
 
         // loop over pixels
         // do NOT modify any output pixels outside of the provided range
