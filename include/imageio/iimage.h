@@ -21,7 +21,6 @@ using Util::clamp;
 
 /**
  * @class An abstract image class. Represents an image of RGBA values.
- * Currently only supports .png files.
  */
 class IImage {
 
@@ -117,7 +116,7 @@ public:
 
     /**
      * @brief Load an image into this image object.
-     * @param filename: The image filename/filepath to load. Must be a .png.
+     * @param filename: The image filename/filepath to load.
      */
     virtual void Load(const string& filename);
 
@@ -126,6 +125,33 @@ public:
      * @param filename: filename/filepath to save file to.
      */
     virtual void SaveAs(const string& filename) const;
+
+    /**
+     * @brief Load an image from a string (this string should be encoded as an image).
+     * @param str: the string
+     */
+    virtual void LoadFromString(const std::string& str);
+
+    /**
+     * @brief Load an image from a char string (this string should be encoded as an image).
+     * @param str: the string
+     * @param length: length of the string
+     */
+    virtual void LoadFromString(const char* str, int length);
+
+    /**
+     * @brief Load an image from an unsigned char string (this string should be encoded as an image).
+     * @param str: the string
+     * @param length: length of the string
+     */
+    virtual void LoadFromString(const uchar* str, int length);
+
+    /**
+     * @brief Loads an image from an array created by stbi_load or stbi_laod_from_memory.
+     * This will free the memory.
+     * @param data: unsigned char array created by stbi_load or stbi_laod_from_memory
+     */
+    virtual void LoadFromSTBI(uchar* data);
 
     /**
      * @brief Copy another image into this image. This will modify the width and height to match

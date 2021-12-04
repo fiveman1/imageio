@@ -4,6 +4,7 @@
 #include <string>
 
 #include "iimage.h"
+#include "greyscale_image.h"
 #include "image.h"
 
 namespace imageio {
@@ -29,6 +30,44 @@ namespace ImageHelper {
     static IImage* FromFile(const string& filename, const IImage& img = Image()) {
         auto clone = img.Clone();
         clone->Load(filename);
+        return clone;
+    }
+
+    /**
+     * @brief Creates a *new* image from a string (this string should be encoded as an image).
+     * @param str: the string
+     * @param img: A derived IImage, a clone will be made of this image and then
+     * the image will be loaded onto that clone and returned. The default uses the Image class.
+     */
+    static IImage* FromString(const std::string& str, const IImage& img = Image()) {
+        auto clone = img.Clone();
+        clone->LoadFromString(str);
+        return clone;
+    }
+
+    /**
+     * @brief Creates a *new* image from a string (this string should be encoded as an image).
+     * @param str: the string
+     * @param length: length of the string
+     * @param img: A derived IImage, a clone will be made of this image and then
+     * the image will be loaded onto that clone and returned. The default uses the Image class.
+     */
+    static IImage* FromString(const char* str, int length, const IImage& img = Image()) {
+        auto clone = img.Clone();
+        clone->LoadFromString(str, length);
+        return clone;
+    }
+
+    /**
+     * @brief Creates a *new* image from a string (this string should be encoded as an image).
+     * @param str: the string
+     * @param length: length of the string
+     * @param img: A derived IImage, a clone will be made of this image and then
+     * the image will be loaded onto that clone and returned. The default uses the Image class.
+     */
+    static IImage* FromString(const uchar* str, int length, const IImage& img = Image()) {
+        auto clone = img.Clone();
+        clone->LoadFromString(str, length);
         return clone;
     }
 
