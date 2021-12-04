@@ -29,7 +29,7 @@ Get the updated Dockerfile from the support-code here: https://github.umn.edu/um
 You will then need to rebuild the image (only once to download the files):
 
 ```shell
-bin/build-env.sh
+bin/rebuild-env.sh
 ```
 
 **Makefile**
