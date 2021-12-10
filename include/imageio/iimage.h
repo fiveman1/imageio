@@ -142,13 +142,6 @@ public:
     virtual void LoadFromString(const uchar* str, int length);
 
     /**
-     * @brief Loads an image from an array created by stbi_load or stbi_laod_from_memory.
-     * This will free the memory.
-     * @param data: unsigned char array created by stbi_load or stbi_laod_from_memory
-     */
-    virtual void LoadFromSTBI(uchar* data);
-
-    /**
      * @brief Copy another image into this image. This will modify the width and height to match
      * the other image. Functionally equivalent to a copy constructor/operator.
      * @param image: the image to copy from.
@@ -190,6 +183,13 @@ protected:
      * have already been set before this function is called.
      */
     virtual void ResizeInternal() = 0;
+
+    /**
+     * @brief Loads an image from an array created by stbi_load or stbi_laod_from_memory.
+     * This will free the memory. Width/height must be set before calling this.
+     * @param data: unsigned char array created by stbi_load or stbi_laod_from_memory
+     */
+    virtual void LoadFromSTBI(uchar* data);
 
 };
 

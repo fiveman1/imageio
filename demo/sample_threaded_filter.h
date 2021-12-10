@@ -5,7 +5,7 @@
 
 using namespace imageio;
 
-// Creating your own ThreadedFilter class is more complicated than just Filter, but not by much.
+// Creating your own ThreadedFilter class is more complicated than Filter, but not by much.
 // Read the documentation for ThreadedFilter if anything here is not clear.
 class MyFilter : public ThreadedFilter {
 public:
@@ -14,7 +14,7 @@ public:
 
 protected:
 
-    void Setup(const vector<IImage *> &inputs, const vector<IImage *> &outputs) override {
+    void Setup(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) override {
         // Setup is called before ApplyToRegion is called
         // Outputs are assumed to be empty images, resize them first
         // pick 1 or 2
@@ -25,8 +25,8 @@ protected:
         // outputs[0]->CopyFrom(*inputs[0]);
     }
 
-    void ApplyToRegion(int startx, int endx, int starty, int endy, const vector<IImage *> &inputs,
-                       const vector<IImage *> &outputs) override {
+    void ApplyToRegion(int startx, int endx, int starty, int endy, const std::vector<IImage *> &inputs,
+                       const std::vector<IImage *> &outputs) override {
         // Do not modify any of the inputs
         const IImage& input = *inputs[0];
         IImage& output = *outputs[0];
@@ -35,7 +35,7 @@ protected:
         // do NOT modify any output pixels outside of the provided range
         // take note of startx, endx, starty, endy
         for (int x = startx; x < endx; ++x) {
-            for (int y = starty; y < endy; ++x) {
+            for (int y = starty; y < endy; ++y) {
                 // do stuff
                 // Color pixel = input.GetPixel(x, y) etc...
             }
@@ -44,7 +44,7 @@ protected:
 
 
 
-    void Cleanup(const vector<IImage *> &inputs, const vector<IImage *> &outputs) override {
+    void Cleanup(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) override {
         // This is called after all ApplyToRegion threads are done
         // If there is something you need to do to the output after all the threads are done do it here
         // outputs[0]->Normalize() for example

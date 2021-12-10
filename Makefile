@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -O3 -Wall -pthread
+CXXFLAGS = -std=c++11 -O3 -pthread
 
 EXE = image_processor
 DEMO = demo.exe
@@ -18,11 +18,10 @@ INCL_PARAMS := $(foreach dir, $(INCL_DIRS), -I$(dir))
 
 all: $(EXE)
 
-$(EXE): $(LIBRARY) $(OBJ_DIR)/main.o
+$(EXE): lib $(OBJ_DIR)/main.o
 	$(CXX) $(CXXFLAGS) -Wl,-rpath,$(LIB_DIR) $(OBJ_DIR)/main.o $(INCL_PARAMS) -L$(LIB_DIR) -l$(LIBRARY) -o $@
 
-# Application Targets:
-$(LIBRARY): $(OBJFILES)
+lib: $(OBJFILES)
 	$(CXX) $(CXXFLAGS) $(OBJFILES) $(INCL_PARAMS) -shared -o $(LIB_DIR)/lib$@.so
 
 $(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp
@@ -34,7 +33,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 $(OBJ_DIR)/demo.o: $(DEMO_DIR)/demo.cpp
 	$(CXX) $(CXXFLAGS) $(INCL_PARAMS) -c $< -o $@
 
-demo: $(LIBRARY) $(DEMOOBJFILES)
+demo: lib $(DEMOOBJFILES)
 	$(CXX) $(CXXFLAGS) -Wl,-rpath,$(LIB_DIR) $(DEMOOBJFILES) $(INCL_PARAMS) -L$(LIB_DIR) -l$(LIBRARY) -o $(DEMO)
 
 clean:

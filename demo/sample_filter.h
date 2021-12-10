@@ -12,7 +12,7 @@ public:
     MyFilter() : Filter(1, 1) {}
 
 protected:
-    void ApplyInternal(const vector<IImage *> &inputs, const vector<IImage *> &outputs) override {
+    void ApplyInternal(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) override {
         // Do not modify any of the inputs
         // Outputs are assumed to be empty images, resize them first
         const IImage& input = *inputs[0];
@@ -27,7 +27,7 @@ protected:
 
         // loop over pixels
         for (int x = 0; x < input.GetWidth(); ++x) {
-            for (int y = 0; y < input.GetHeight(); ++x) {
+            for (int y = 0; y < input.GetHeight(); ++y) {
                 // do stuff
                 // Color pixel = input.GetPixel(x, y) etc...
             }
