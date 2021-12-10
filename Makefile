@@ -22,7 +22,7 @@ $(EXE): lib $(OBJ_DIR)/main.o
 	$(CXX) $(CXXFLAGS) -Wl,-rpath,$(LIB_DIR) $(OBJ_DIR)/main.o $(INCL_PARAMS) -L$(LIB_DIR) -l$(LIBRARY) -o $@
 
 lib: $(OBJFILES)
-	$(CXX) $(CXXFLAGS) $(OBJFILES) $(INCL_PARAMS) -shared -o $(LIB_DIR)/lib$@.so
+	$(CXX) $(CXXFLAGS) $(OBJFILES) $(INCL_PARAMS) -shared -o $(LIB_DIR)/lib$(LIBRARY).so
 
 $(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp
 	$(CXX) $(CXXFLAGS) $(INCL_PARAMS) -c $< -o $@
