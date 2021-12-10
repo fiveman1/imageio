@@ -4,7 +4,7 @@
 #include "util.h"
 
 namespace imageio {
-    
+
 using uchar = unsigned char;
 
 /**
@@ -21,7 +21,7 @@ public:
      * @param b: blue
      * @param a: alpha
      */
-    explicit Color(float r=0.0f, float g=0.0f, float b=0.0f, float a=0.0f);
+    explicit Color(float r=0.0f, float g=0.0f, float b=0.0f, float a=1.0f);
 
     /**
      * @return The luminance of this Color.
@@ -125,6 +125,21 @@ public:
      * @return new color
     */
     Color operator/(float n) const;
+
+    /**
+     * @return An opaque version of this pixel.
+     */
+    Color Opaque() const;
+
+    /**
+     * @return A black pixel. RGBA: (0,0,0,255)
+     */
+    static Color Black();
+
+    /**
+     * @return A white pixel. RGBA: (255,255,255,255)
+     */
+    static Color White();
 
     float R,G,B,A;
 };
