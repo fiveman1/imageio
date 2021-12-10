@@ -12,11 +12,6 @@
 
 namespace imageio {
 
-using std::function;
-using std::vector;
-using std::unique_ptr;
-using std::pair;
-
 /**
  * @class A composite filter class. This is a filter made up of multiple filters.
  * It calls them in succession. This will set the number of inputs and outputs of itself
@@ -53,7 +48,7 @@ public:
      * compositeFilter.AddFilter( new MyFilter(),
      *                            []() { return new MyImage(); } );
      */
-    virtual void AddFilter(Filter* filter, const function<IImage*()>& image_factory);
+    virtual void AddFilter(Filter* filter, const std::function<IImage*()>& image_factory);
 
     /**
      * @brief Applies each filter in succession to the provided inputs/outputs.
@@ -61,13 +56,13 @@ public:
      * @param outputs: variable number of outputs
      * @throws runtime_error: if there are no filters added to this composite filter
      */
-    void Apply(const vector<IImage *> &inputs, const vector<IImage *> &outputs) override;
+    void Apply(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) override;
 
 protected:
 
-    vector<pair<unique_ptr<Filter>, function<IImage*()>>> filters;
+    std::vector<std::pair<std::unique_ptr<Filter>, std::function<IImage*()>>> filters;
 
-    void ApplyInternal(const vector<IImage *> &inputs, const vector<IImage *> &outputs) override;
+    void ApplyInternal(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) override;
 
 };
 

@@ -14,11 +14,6 @@
  */
 namespace imageio {
 
-using std::string;
-using std::unique_ptr;
-using std::vector;
-using Util::clamp;
-
 /**
  * @class An abstract image class. Represents an image of RGBA values.
  */
@@ -118,13 +113,13 @@ public:
      * @brief Load an image into this image object.
      * @param filename: The image filename/filepath to load.
      */
-    virtual void Load(const string& filename);
+    virtual void Load(const std::string& filename);
 
     /**
      * @brief Save the image into the given filename. Filename must be a .png.
      * @param filename: filename/filepath to save file to.
      */
-    virtual void SaveAs(const string& filename) const;
+    virtual void SaveAs(const std::string& filename) const;
 
     /**
      * @brief Load an image from a string (this string should be encoded as an image).

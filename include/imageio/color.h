@@ -4,8 +4,7 @@
 #include "util.h"
 
 namespace imageio {
-
-using Util::clamp;
+    
 using uchar = unsigned char;
 
 /**

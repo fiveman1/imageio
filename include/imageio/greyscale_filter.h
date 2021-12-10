@@ -11,10 +11,10 @@ namespace imageio {
 class GreyScaleFilter : public ThreadedFilter {
 
 protected:
-    void ApplyToRegion(int startx, int endx, int starty, int endy, const vector<IImage *> &inputs,
-                       const vector<IImage *> &outputs) override;
+    void ApplyToRegion(int startx, int endx, int starty, int endy, const std::vector<IImage *> &inputs,
+                       const std::vector<IImage *> &outputs) override;
 
-    void Setup(const vector<IImage *> &inputs, const vector<IImage *> &outputs) override;
+    void Setup(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) override;
 
 };
 

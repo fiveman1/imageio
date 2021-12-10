@@ -1,8 +1,5 @@
 #include "imageio/greyscale_image.h"
 
-#include "imageio/stb_image.h"
-#include "imageio/stb_image_write.h"
-
 namespace imageio {
 
 IImage* GreyscaleImage::Clone() const {
@@ -50,8 +47,8 @@ void GreyscaleImage::Convolve(int startx, int endx, int starty, int endy, IImage
             curr = 0.0f;
             for (int row = 0; row < size; ++row) {
                 for (int col = 0; col < size; ++col) {
-                    c1 = clamp(x + col - r, 0, width - 1);
-                    r1 = clamp(y + row - r, 0, height - 1);
+                    c1 = Util::clamp(x + col - r, 0, width - 1);
+                    r1 = Util::clamp(y + row - r, 0, height - 1);
                     curr += GetGreyscale(c1, r1) * kernel(col, row);
                 }
             }

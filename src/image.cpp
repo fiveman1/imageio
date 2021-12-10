@@ -1,8 +1,5 @@
 #include "imageio/image.h"
 
-#include "imageio/stb_image.h"
-#include "imageio/stb_image_write.h"
-
 namespace imageio {
 
 IImage* Image::Clone() const {

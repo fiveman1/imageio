@@ -2,8 +2,8 @@
 
 namespace imageio {
 
-void DoubleThresholdFilter::ApplyToRegion(int startx, int endx, int starty, int endy, const vector<IImage *> &inputs,
-                                          const vector<IImage *> &outputs) {
+void DoubleThresholdFilter::ApplyToRegion(int startx, int endx, int starty, int endy, const std::vector<IImage *> &inputs,
+                                          const std::vector<IImage *> &outputs) {
     const IImage& input = *inputs[0];
     IImage& output = *outputs[0];
     float high_threshold = max * high;
@@ -23,7 +23,7 @@ void DoubleThresholdFilter::ApplyToRegion(int startx, int endx, int starty, int 
     }
 }
 
-void DoubleThresholdFilter::Setup(const vector<IImage *> &inputs, const vector<IImage *> &outputs) {
+void DoubleThresholdFilter::Setup(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) {
     const IImage& input = *inputs[0];
     IImage& output = *outputs[0];
     output.Resize(input);

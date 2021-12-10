@@ -8,10 +8,6 @@
 
 namespace imageio {
 
-using std::max;
-using std::min;
-using Util::between;
-
 /**
  * @class Non max suppression filter. Uses an intensity and direction image to
  * perform gradient magnitude thresholding.
@@ -22,10 +18,10 @@ public:
     NonMaxSuppressionFilter() : ThreadedFilter(2, 1) {}
 
 protected:
-    void ApplyToRegion(int startx, int endx, int starty, int endy, const vector<IImage *> &inputs,
-                       const vector<IImage *> &outputs) override;
+    void ApplyToRegion(int startx, int endx, int starty, int endy, const std::vector<IImage *> &inputs,
+                       const std::vector<IImage *> &outputs) override;
 
-    void Setup(const vector<IImage *> &inputs, const vector<IImage *> &outputs) override;
+    void Setup(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) override;
 
 };
 

@@ -1,5 +1,5 @@
--include bin/settings
-CXXFLAGS = -std=c++11 -O3 -pthread
+CXX = g++
+CXXFLAGS = -std=c++11 -O3 -Wall -pthread
 
 EXE = image_processor
 DEMO = demo.exe
@@ -23,7 +23,7 @@ $(EXE): $(LIBRARY) $(OBJ_DIR)/main.o
 
 # Application Targets:
 $(LIBRARY): $(OBJFILES)
-	$(CXX) $(CXXFLAGS) $(OBJFILES) $(INCL_PARAMS) -shared -o $(LIB_DIR)/lib$@_$(ARCH).so
+	$(CXX) $(CXXFLAGS) $(OBJFILES) $(INCL_PARAMS) -shared -o $(LIB_DIR)/lib$@.so
 
 $(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp
 	$(CXX) $(CXXFLAGS) $(INCL_PARAMS) -c $< -o $@

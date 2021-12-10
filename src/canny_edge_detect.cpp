@@ -12,15 +12,15 @@ using namespace std::chrono;
 namespace imageio {
 
 CannyEdgeDetect::CannyEdgeDetect(float low, float high) {
-    composite_filter.AddFilter(new GreyScaleFilter(), &ImageHelper::CreateGreyscaleImage);
-    composite_filter.AddFilter(new GaussianFilter(5, 1.4f), &ImageHelper::CreateGreyscaleImage);
-    composite_filter.AddFilter(new SobelFilter(), &ImageHelper::CreateGreyscaleImage);
-    composite_filter.AddFilter(new NonMaxSuppressionFilter(), &ImageHelper::CreateGreyscaleImage);
-    composite_filter.AddFilter(new DoubleThresholdFilter(low, high, 0.1f, 1.0f), &ImageHelper::CreateGreyscaleImage);
-    composite_filter.AddFilter(new HysteresisFilter(0.1f, 1.0f), &ImageHelper::CreateGreyscaleImage);
+    composite_filter.AddFilter(new GreyScaleFilter(), &ImageHelper::CreateImage<GreyscaleImage>);
+    composite_filter.AddFilter(new GaussianFilter(5, 1.4f), &ImageHelper::CreateImage<GreyscaleImage>);
+    composite_filter.AddFilter(new SobelFilter(), &ImageHelper::CreateImage<GreyscaleImage>);
+    composite_filter.AddFilter(new NonMaxSuppressionFilter(), &ImageHelper::CreateImage<GreyscaleImage>);
+    composite_filter.AddFilter(new DoubleThresholdFilter(low, high, 0.1f, 1.0f), &ImageHelper::CreateImage<GreyscaleImage>);
+    composite_filter.AddFilter(new HysteresisFilter(0.1f, 1.0f), &ImageHelper::CreateImage<GreyscaleImage>);
 }
 
-void CannyEdgeDetect::ApplyInternal(const vector<IImage *> &inputs, const vector<IImage *> &outputs) {
+void CannyEdgeDetect::ApplyInternal(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) {
 #ifdef CANNY_DEBUG
     auto total_start = high_resolution_clock::now();
     composite_filter.Apply(inputs, outputs);

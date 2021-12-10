@@ -2,8 +2,8 @@
 
 namespace imageio {
 
-void SobelFilter::ApplyToRegion(int startx, int endx, int starty, int endy, const vector<IImage *> &inputs,
-                                const vector<IImage *> &outputs) {
+void SobelFilter::ApplyToRegion(int startx, int endx, int starty, int endy, const std::vector<IImage *> &inputs,
+                                const std::vector<IImage *> &outputs) {
     const IImage& input = *inputs[0];
     IImage& intensity = *outputs[0];
     IImage& direction = *outputs[1];
@@ -19,15 +19,15 @@ void SobelFilter::ApplyToRegion(int startx, int endx, int starty, int endy, cons
             iy = 0.0f;
             for (int row = 0; row < size; ++row) {
                 for (int col = 0; col < size; ++col) {
-                    c1 = clamp(x + col - r, 0, width - 1);
-                    r1 = clamp(y + row - r, 0, height - 1);
+                    c1 = Util::clamp(x + col - r, 0, width - 1);
+                    r1 = Util::clamp(y + row - r, 0, height - 1);
                     curr = input.GetGreyscale(c1, r1);
                     ix += curr * kernelX(col, row);
                     iy += curr * kernelY(col, row);
                 }
             }
-            intens = sqrt(ix * ix + iy * iy);
-            direc = atan2(iy, ix) / pi;
+            intens = std::sqrt(ix * ix + iy * iy);
+            direc = std::atan2(iy, ix) / Util::pi;
             if (direc < 0) direc += 1.0f;
             intensity.SetGreyscale(x, y, intens);
             direction.SetGreyscale(x, y, direc);
@@ -35,12 +35,12 @@ void SobelFilter::ApplyToRegion(int startx, int endx, int starty, int endy, cons
     }
 }
 
-void SobelFilter::Setup(const vector<IImage *> &inputs, const vector<IImage *> &outputs) {
+void SobelFilter::Setup(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) {
     outputs[0]->Resize(*inputs[0]);
     outputs[1]->Resize(*inputs[0]);
 }
 
-void SobelFilter::Cleanup(const vector<IImage *> &inputs, const vector<IImage *> &outputs) {
+void SobelFilter::Cleanup(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) {
     outputs[0]->Normalize();
 }
 

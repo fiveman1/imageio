@@ -3,11 +3,11 @@
 namespace imageio {
 
 Matrix::Matrix(int cols, int rows, float default_value) : cols(cols), rows(rows) {
-    array = vector<float>(cols * rows, default_value);
+    array = std::vector<float>(cols * rows, default_value);
 }
 
-Matrix::Matrix(const initializer_list<vector<float>> &list) : cols(list.begin()->size()), rows(list.size()) {
-    array = vector<float>(cols * rows);
+Matrix::Matrix(const std::initializer_list<std::vector<float>> &list) : cols(list.begin()->size()), rows(list.size()) {
+    array = std::vector<float>(cols * rows);
     int idx = 0;
     for (const auto& row : list) {
         std::copy(row.begin(), row.end(), array.begin() + idx);

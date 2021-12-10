@@ -7,9 +7,6 @@
 
 namespace imageio {
 
-using std::initializer_list;
-using std::vector;
-
 /**
  * @class Represents a column-major matrix of floats.
  */
@@ -30,7 +27,7 @@ public:
      * @example Matrix mat = { {0.0, 1.0}, {-1.0, 3.5} }
      * @param list: initializer list, which is a list of rows
      */
-    Matrix(const initializer_list<vector<float>>& list);
+    Matrix(const std::initializer_list<std::vector<float>>& list);
 
     /**
      * @return number of columns
@@ -75,7 +72,7 @@ private:
     }
 
     int cols, rows;
-    vector<float> array;
+    std::vector<float> array;
 };
 
 }

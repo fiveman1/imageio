@@ -28,7 +28,7 @@ public:
     explicit CannyEdgeDetect(float low = 0.1f, float high = 0.3f);
 
 protected:
-    void ApplyInternal(const vector<IImage *> &inputs, const vector<IImage *> &outputs) override;
+    void ApplyInternal(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) override;
 
     CompositeFilter composite_filter;
 

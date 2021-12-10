@@ -8,8 +8,6 @@
 
 namespace imageio {
 
-using std::vector;
-
 /**
  * @class Represents a standard RGBA image. Implementation uses Color objects (RGBA) to represent images.
  */
@@ -35,7 +33,7 @@ public:
 
 protected:
 
-    vector<Color> array;
+    std::vector<Color> array;
 
     void ResizeInternal() override;
 

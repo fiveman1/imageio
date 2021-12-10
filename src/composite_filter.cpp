@@ -2,8 +2,8 @@
 
 namespace imageio {
 
-void CompositeFilter::AddFilter(Filter* filter, const function<IImage*()>& image_factory) {
-    filters.emplace_back(unique_ptr<Filter>(filter), image_factory);
+void CompositeFilter::AddFilter(Filter* filter, const std::function<IImage*()>& image_factory) {
+    filters.emplace_back(std::unique_ptr<Filter>(filter), image_factory);
     if (filters.size() == 1) {
         num_inputs = filter->GetInputs();
     }
@@ -13,16 +13,16 @@ void CompositeFilter::AddFilter(Filter* filter, const function<IImage*()>& image
     }
 }
 
-void CompositeFilter::Apply(const vector<IImage *> &inputs, const vector<IImage *> &outputs) {
+void CompositeFilter::Apply(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) {
     if (filters.empty()) {
         throw std::runtime_error("Tried to apply composite filter with no filters added!");
     }
     Filter::Apply(inputs, outputs);
 }
 
-void CompositeFilter::ApplyInternal(const vector<IImage *> &inputs, const vector<IImage *> &outputs) {
+void CompositeFilter::ApplyInternal(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) {
     // Create images, skip the last filter
-    vector<unique_ptr<IImage>> images;
+    std::vector<std::unique_ptr<IImage>> images;
     for (int i = 0; i < filters.size() - 1; ++i) {
         Filter& filter = *filters[i].first;
         auto& image_factory = filters[i].second;
@@ -32,12 +32,12 @@ void CompositeFilter::ApplyInternal(const vector<IImage *> &inputs, const vector
     }
     // Loop over each filter (except the last), copy image pointers from the images we just created
     // and give them to filter.Apply()
-    vector<IImage*> ins(inputs); // The first input vector uses the original input vector
+    std::vector<IImage*> ins(inputs); // The first input vector uses the original input vector
     int idx = 0;
     for (int i = 0; i < filters.size() - 1; ++i) {
         Filter& filter = *filters[i].first;
         int n_out = filter.GetOutputs();
-        vector<IImage*> outs(n_out);
+        std::vector<IImage*> outs(n_out);
         for (int j = 0; j < n_out; ++j) {
             outs[j] = images[idx++].get();
         }

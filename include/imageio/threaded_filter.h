@@ -8,11 +8,6 @@
 
 namespace imageio {
 
-using std::lock_guard;
-using std::mutex;
-using std::thread;
-using std::vector;
-
 /**
  * @class An abstract threaded filter. This class spawns multiple threads and divides the work among many threads
  * given equal sized regions to work with. This requires that the filter can work across different
@@ -40,7 +35,7 @@ protected:
     /**
      * @brief Sets up threads and divides work to calls to ApplyToRegion().
      */
-    void ApplyInternal(const vector<IImage *> &inputs, const vector<IImage *> &outputs) override;
+    void ApplyInternal(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) override;
 
     /**
      * @brief Apply the filter to every pixel between ( [startx, endx), [starty, endy) )
@@ -55,7 +50,8 @@ protected:
      * @param inputs: Filter inputs (do not modify these)
      * @param outputs: Filter outputs
      */
-    virtual void ApplyToRegion(int startx, int endx, int starty, int endy, const vector<IImage *> &inputs, const vector<IImage *> &outputs) = 0;
+    virtual void ApplyToRegion(int startx, int endx, int starty, int endy,
+                               const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) = 0;
 
     /**
      * @brief Do any setup required before any calls to ApplyToRegion are done here.
@@ -63,7 +59,7 @@ protected:
      * @param inputs: Filter inputs (do not modify these)
      * @param outputs: Filter outputs
      */
-    virtual void Setup(const vector<IImage *> &inputs, const vector<IImage *> &outputs) = 0;
+    virtual void Setup(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) = 0;
 
     /**
      * @brief Perform any cleanup required here. This is called after all threads/all calls to ApplyToRegion
@@ -71,10 +67,10 @@ protected:
      * @param inputs: Filter inputs (do not modify these)
      * @param outputs: Filter outputs
      */
-    virtual void Cleanup(const vector<IImage *> &inputs, const vector<IImage *> &outputs) {}
+    virtual void Cleanup(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) {}
 
     int thread_count;
-    mutable mutex mtx;
+    mutable std::mutex mtx;
 };
 
 }

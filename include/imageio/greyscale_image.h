@@ -36,7 +36,7 @@ public:
 
 protected:
 
-    vector<float> array;
+    std::vector<float> array;
 
     void ResizeInternal() override;
 

@@ -9,19 +9,19 @@ float Color::GetLuminance() const {
 }
 
 uchar Color::Red() const {
-    return static_cast<uchar>(clamp(R, 0.0f, 1.0f) * 255);
+    return static_cast<uchar>(Util::clamp(R, 0.0f, 1.0f) * 255);
 }
 
 uchar Color::Green() const {
-    return static_cast<uchar>(clamp(G, 0.0f, 1.0f) * 255);
+    return static_cast<uchar>(Util::clamp(G, 0.0f, 1.0f) * 255);
 }
 
 uchar Color::Blue() const {
-    return static_cast<uchar>(clamp(B, 0.0f, 1.0f) * 255);
+    return static_cast<uchar>(Util::clamp(B, 0.0f, 1.0f) * 255);
 }
 
 uchar Color::Alpha() const {
-    return static_cast<uchar>(clamp(A, 0.0f, 1.0f) * 255);
+    return static_cast<uchar>(Util::clamp(A, 0.0f, 1.0f) * 255);
 }
 
 void Color::operator*=(const Color &rhs) {

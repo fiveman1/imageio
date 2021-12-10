@@ -8,8 +8,8 @@
 
 namespace imageio {
 
-void IImage::SaveAs(const string &filename) const {
-    auto image = unique_ptr<uchar[]>(new uchar[width * height * 4]);
+void IImage::SaveAs(const std::string &filename) const {
+    auto image = std::unique_ptr<uchar[]>(new uchar[width * height * 4]);
     auto i = image.get() - 1;
     Color pixel;
     for (int y = 0; y < height; ++y) {
@@ -24,13 +24,13 @@ void IImage::SaveAs(const string &filename) const {
     stbi_write_png(filename.c_str(), width, height, 4, image.get(), width*4);
 }
 
-void IImage::Load(const string &filename) {
+void IImage::Load(const std::string &filename) {
     int components;
     uchar* image = stbi_load(filename.c_str(), &width, &height, &components, STBI_rgb_alpha);
     LoadFromSTBI(image);
 }
 
-void IImage::LoadFromString(const string &str) {
+void IImage::LoadFromString(const std::string &str) {
     LoadFromString(reinterpret_cast<const uchar*>(str.c_str()), static_cast<int>(str.length()));
 }
 
@@ -101,8 +101,8 @@ void IImage::Convolve(int startx, int endx, int starty, int endy, IImage &output
             curr = Color(0.0f, 0.0f, 0.0f, 1.0f);
             for (int row = 0; row < size; ++row) {
                 for (int col = 0; col < size; ++col) {
-                    c1 = clamp(x + col - r, 0, width - 1);
-                    r1 = clamp(y + row - r, 0, height - 1);
+                    c1 = Util::clamp(x + col - r, 0, width - 1);
+                    r1 = Util::clamp(y + row - r, 0, height - 1);
                     curr += GetPixel(c1, r1) * kernel(col, row);
                 }
             }

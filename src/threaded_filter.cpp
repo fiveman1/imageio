@@ -2,12 +2,13 @@
 
 namespace imageio {
 
-void ThreadedFilter::ApplyInternal(const vector<IImage *> &inputs, const vector<IImage *> &outputs) {
-    lock_guard<mutex> lock(mtx);
+void ThreadedFilter::ApplyInternal(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) {
+    std::lock_guard<std::mutex> lock(mtx);
     Setup(inputs, outputs);
     int width = inputs[0]->GetWidth();
     int height = inputs[0]->GetHeight();
-    vector<thread> threads;
+    std::vector<std::thread> threads;
+    threads.reserve(thread_count * thread_count);
     int startx, endx, starty, endy;
     // Divide the image into subregions
     // Image (thread_count = 4):
