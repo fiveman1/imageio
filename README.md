@@ -12,6 +12,12 @@ bash install.sh path/to/folder
 
 This will create the directory if it does not exist as well as `lib` and `include` directories.
 
+You can also install to your user directory if you want:
+
+```bash
+sudo bash install.sh /usr
+```
+
 ## Demo
 
 ### To run demo:
