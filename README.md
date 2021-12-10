@@ -4,6 +4,14 @@ Opens image files and performs canny edge detection on them. Uses multithreading
 
 Contains a variety of interfaces and implementations for use with normal image processing and concurrent image processing.
 
+## Install
+
+```bash
+bash install.sh path/to/folder
+```
+
+This will create the directory if it does not exist as well as `lib` and `include` directories.
+
 ## Demo
 
 ### To run demo:
