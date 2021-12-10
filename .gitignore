@@ -1,0 +1,17 @@
+cmake-build-debug
+*.o
+.idea/
+cmake_install.cmake
+CMakeCache.txt
+image_processor
+demo.exe
+iteration1redux.cbp
+Testing
+CMakeFiles
+.vscode
+.dependencies
+.DS_Store
+*.out
+*.idea
+bin/settings
+src/*
