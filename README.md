@@ -34,7 +34,7 @@ The ``demo`` directory has multiple files demonstrating how to use:
 ## Shared Library (.so)
 
 ### To compile shared library:
-1. `make imageio`
+1. `make lib`
 
 `libimageio.so` will be located in the lib folder.
 
