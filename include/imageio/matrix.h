@@ -50,13 +50,13 @@ public:
     }
 
     /**
-     * @brief Set the value of (col, row) to val
+     * @brief Gets a reference to the value at (col, row)
      * @param col: column
      * @param row: row
-     * @param val: new value
+     * @return reference to the value at (col, row)
      */
-    void Set(int col, int row, float val) {
-        array[at(col, row, cols)] = val;
+    float& operator()(int col, int row) {
+        return array[at(col, row, cols)];
     }
 
     /**

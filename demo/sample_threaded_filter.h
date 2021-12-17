@@ -25,7 +25,7 @@ protected:
         // outputs[0]->CopyFrom(*inputs[0]);
     }
 
-    void ApplyToRegion(int startx, int endx, int starty, int endy, const std::vector<IImage *> &inputs,
+    void ApplyToRegion(int startX, int endX, int startY, int endY, const std::vector<IImage *> &inputs,
                        const std::vector<IImage *> &outputs) override {
         // Do not modify any of the inputs
         const IImage& input = *inputs[0];
@@ -33,9 +33,9 @@ protected:
 
         // loop over pixels
         // do NOT modify any output pixels outside of the provided range
-        // take note of startx, endx, starty, endy
-        for (int x = startx; x < endx; ++x) {
-            for (int y = starty; y < endy; ++y) {
+        // take note of startX, endX, startY, endY
+        for (int x = startX; x < endX; ++x) {
+            for (int y = startY; y < endY; ++y) {
                 // do stuff
                 // Color pixel = input.GetPixel(x, y) etc...
             }

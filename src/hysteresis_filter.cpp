@@ -2,13 +2,13 @@
 
 namespace imageio {
 
-void HysteresisFilter::ApplyToRegion(int startx, int endx, int starty, int endy, const std::vector<IImage *> &inputs,
+void HysteresisFilter::ApplyToRegion(int startX, int endX, int startY, int endY, const std::vector<IImage *> &inputs,
                                      const std::vector<IImage *> &outputs) {
     const IImage& input = *inputs[0];
     IImage& output = *outputs[0];
     float thres;
-    for (int y = starty; y < endy; ++y) {
-        for (int x = startx; x < endx; ++x) {
+    for (int y = startY; y < endY; ++y) {
+        for (int x = startX; x < endX; ++x) {
             thres = input.GetGreyscale(x, y);
             if (std::abs(thres - low_color) < Util::eps) {
                 if (CheckStrongNeighbors(x, y, input)) {

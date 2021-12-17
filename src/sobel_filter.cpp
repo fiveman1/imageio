@@ -2,7 +2,7 @@
 
 namespace imageio {
 
-void SobelFilter::ApplyToRegion(int startx, int endx, int starty, int endy, const std::vector<IImage *> &inputs,
+void SobelFilter::ApplyToRegion(int startX, int endX, int startY, int endY, const std::vector<IImage *> &inputs,
                                 const std::vector<IImage *> &outputs) {
     const IImage& input = *inputs[0];
     IImage& intensity = *outputs[0];
@@ -13,8 +13,8 @@ void SobelFilter::ApplyToRegion(int startx, int endx, int starty, int endy, cons
     int c1, r1;
     int width = input.GetWidth();
     int height = input.GetHeight();
-    for (int y = starty; y < endy; ++y) {
-        for (int x = startx; x < endx; ++x) {
+    for (int y = startY; y < endY; ++y) {
+        for (int x = startX; x < endX; ++x) {
             ix = 0.0f;
             iy = 0.0f;
             for (int row = 0; row < size; ++row) {

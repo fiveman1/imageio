@@ -37,13 +37,13 @@ void GreyscaleImage::operator*=(float n) {
     }
 }
 
-void GreyscaleImage::Convolve(int startx, int endx, int starty, int endy, IImage &output, const Matrix &kernel) const {
+void GreyscaleImage::Convolve(int startX, int endX, int startY, int endY, IImage &output, const Matrix &kernel) const {
     int size = kernel.GetRows();
     int r = size / 2;
     float curr;
     int c1, r1;
-    for (int y = starty; y < endy; ++y) {
-        for (int x = startx; x < endx; ++x) {
+    for (int y = startY; y < endY; ++y) {
+        for (int x = startX; x < endX; ++x) {
             curr = 0.0f;
             for (int row = 0; row < size; ++row) {
                 for (int col = 0; col < size; ++col) {

@@ -90,14 +90,14 @@ void IImage::Convolve(IImage &output, const Matrix &kernel) {
     Convolve(0, GetWidth(), 0, GetHeight(), output, kernel);
 }
 
-void IImage::Convolve(int startx, int endx, int starty, int endy, IImage &output,
+void IImage::Convolve(int startX, int endX, int startY, int endY, IImage &output,
                       const Matrix &kernel) const {
     int size = kernel.GetRows();
     int r = size / 2;
     Color curr;
     int c1, r1;
-    for (int y = starty; y < endy; ++y) {
-        for (int x = startx; x < endx; ++x) {
+    for (int y = startY; y < endY; ++y) {
+        for (int x = startX; x < endX; ++x) {
             curr = Color(0.0f, 0.0f, 0.0f, 1.0f);
             for (int row = 0; row < size; ++row) {
                 for (int col = 0; col < size; ++col) {

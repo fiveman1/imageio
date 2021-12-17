@@ -2,19 +2,19 @@
 
 namespace imageio {
 
-void DoubleThresholdFilter::ApplyToRegion(int startx, int endx, int starty, int endy, const std::vector<IImage *> &inputs,
+void DoubleThresholdFilter::ApplyToRegion(int startX, int endX, int startY, int endY, const std::vector<IImage *> &inputs,
                                           const std::vector<IImage *> &outputs) {
     const IImage& input = *inputs[0];
     IImage& output = *outputs[0];
     float high_threshold = max * high;
     float low_threshold = high_threshold * low;
-    float thres;
-    for (int y = starty; y < endy; ++y) {
-        for (int x = startx; x < endx; ++x) {
-            thres = input.GetGreyscale(x, y);
-            if (thres >= high_threshold) {
+    float threshold;
+    for (int y = startY; y < endY; ++y) {
+        for (int x = startX; x < endX; ++x) {
+            threshold = input.GetGreyscale(x, y);
+            if (threshold >= high_threshold) {
                 output.SetGreyscale(x, y, high_color);
-            } else if (thres >= low_threshold) {
+            } else if (threshold >= low_threshold) {
                 output.SetGreyscale(x, y, low_color);
             } else {
                 output.SetGreyscale(x, y, 0.0f);
@@ -27,6 +27,7 @@ void DoubleThresholdFilter::Setup(const std::vector<IImage *> &inputs, const std
     const IImage& input = *inputs[0];
     IImage& output = *outputs[0];
     output.Resize(input);
+
     int width = input.GetWidth();
     int height = input.GetHeight();
     max = 0.0f;

@@ -158,17 +158,17 @@ public:
 
     /**
      * @brief Convolve an image using the given kernel, put the results in output. It is assumed that the kernel
-     * is a square matrix with an odd number of cols/rows. Only operates from [startx, endx), [starty, endy).
+     * is a square matrix with an odd number of cols/rows. Only operates from [startX, endX), [startY, endY).
      * This is thread-safe. You MUST resize the output image to have the same dimensions as this image before calling
      * this or it will cause problems.
-     * @param startx: the starting x coordinate (inclusive)
-     * @param endx: the ending x coordinate (exclusive)
-     * @param starty: the starting y coordinate (inclusive)
-     * @param endy: the ending y coordinate (exclusive)
+     * @param startX: the starting x coordinate (inclusive)
+     * @param endX: the ending x coordinate (exclusive)
+     * @param startY: the starting y coordinate (inclusive)
+     * @param endY: the ending y coordinate (exclusive)
      * @param output: the output image (result of the convolution)
      * @param kernel: kernel matrix
      */
-    virtual void Convolve(int startx, int endx, int starty, int endy, IImage& output, const Matrix& kernel) const;
+    virtual void Convolve(int startX, int endX, int startY, int endY, IImage& output, const Matrix& kernel) const;
 
     /**
      * @brief Normalize the image by dividing each pixels value by the largest RGB values in the image. Does so IN PLACE.

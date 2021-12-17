@@ -19,7 +19,7 @@ public:
     SobelFilter() : ThreadedFilter(1, 2) {}
 
 protected:
-    void ApplyToRegion(int startx, int endx, int starty, int endy, const std::vector<IImage *> &inputs,
+    void ApplyToRegion(int startX, int endX, int startY, int endY, const std::vector<IImage *> &inputs,
                        const std::vector<IImage *> &outputs) override;
 
     void Setup(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) override;
@@ -27,13 +27,13 @@ protected:
     void Cleanup(const std::vector<IImage *> &inputs, const std::vector<IImage *> &outputs) override;
 
 private:
-    Matrix kernelX  { { 1, 0, -1 },
-                      { 2, 0, -2 },
-                      { 1, 0, -1 } };
+    Matrix kernelX { { 1, 0, -1 },
+                     { 2, 0, -2 },
+                     { 1, 0, -1 } };
 
-    Matrix kernelY  { { 1, 2, 1 },
-                      { 0, 0, 0 },
-                      { -1, -2, -1 } };
+    Matrix kernelY { {  1,  2,  1 },
+                     {  0,  0,  0 },
+                     { -1, -2, -1 } };
 };
 
 }

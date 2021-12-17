@@ -30,7 +30,7 @@ public:
 
     void operator*=(float n) override;
 
-    void Convolve(int startx, int endx, int starty, int endy, IImage &output, const Matrix &kernel) const override;
+    void Convolve(int startX, int endX, int startY, int endY, IImage &output, const Matrix &kernel) const override;
 
     void Normalize() override;
 

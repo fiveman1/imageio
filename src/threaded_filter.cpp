@@ -9,7 +9,7 @@ void ThreadedFilter::ApplyInternal(const std::vector<IImage *> &inputs, const st
     int height = inputs[0]->GetHeight();
     std::vector<std::thread> threads;
     threads.reserve(thread_count * thread_count);
-    int startx, endx, starty, endy;
+    int startX, endX, startY, endY;
     // Divide the image into subregions
     // Image (thread_count = 4):
     // | X X X X |
@@ -17,15 +17,15 @@ void ThreadedFilter::ApplyInternal(const std::vector<IImage *> &inputs, const st
     // | X X X X |
     // | X X X X |
     // Each X is a threaded call to ApplyToRegion with the parameters
-    // [startx, endx), [starty, endy) defining the region
+    // [startX, endX), [startY, endY) defining the region
     for (int i = 0; i < thread_count; ++i) {
-        startx = (i * width) / thread_count;
-        endx = ((i + 1) * width) / thread_count;
+        startX = (i * width) / thread_count;
+        endX = ((i + 1) * width) / thread_count;
         for (int j = 0; j < thread_count; ++j) {
-            starty = (j * height) / thread_count;
-            endy = ((j + 1) * height) / thread_count;
+            startY = (j * height) / thread_count;
+            endY = ((j + 1) * height) / thread_count;
             // Threads start as soon as they are added to the vector
-            threads.emplace_back(&ThreadedFilter::ApplyToRegion, this, startx, endx, starty, endy, inputs, outputs);
+            threads.emplace_back(&ThreadedFilter::ApplyToRegion, this, startX, endX, startY, endY, inputs, outputs);
         }
     }
 
